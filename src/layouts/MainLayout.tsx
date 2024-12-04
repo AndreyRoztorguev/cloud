@@ -4,6 +4,7 @@ import {
   CardContent,
   LinearProgress,
   linearProgressClasses,
+  Stack,
   styled,
   SvgIcon,
 } from "@mui/material";
@@ -25,8 +26,10 @@ import FoldersIcon from "../assets/icons/folders.svg?react";
 import FileRequestIcon from "../assets/icons/fileRequest.svg?react";
 import ShareIcon from "../assets/icons/share.svg?react";
 import TrashBinIcon from "../assets/icons/trash.svg?react";
+import NavSVGIcon from "../assets/icons/nav-active.svg?react";
 import { Logo } from "@/components/ui/Logo/Logo";
 import { NavLink, Outlet } from "react-router-dom";
+import { Image } from "@/components/ui/Image/Image";
 
 const drawerWidth = 260;
 
@@ -41,19 +44,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: "#1a90ff",
+    backgroundColor: theme.palette.primary.main,
     ...theme.applyStyles("dark", {
-      backgroundColor: "#308fe8",
+      backgroundColor: theme.palette.secondary.main,
     }),
   },
 }));
-
-// const UpgradeButton = styled(Button)(({ theme }) => ({
-//   backgroundColor: theme.palette.brand.main,
-//   "&:hover": {
-//     backgroundColor: theme.palette.brand.main,
-//   },
-// }));
 
 function MainLayout() {
   return (
@@ -82,52 +78,85 @@ function MainLayout() {
           <Logo />
         </Toolbar>
         <Divider />
-        <List>
-          {[
-            { label: "Home", href: "/", Icon: HomeIcon },
-            { label: "My Files", href: "/files", Icon: FoldersIcon },
-            { label: "Stared", href: "/starred", Icon: StarIcon },
-            { label: "Files Request", href: "/request", Icon: FileRequestIcon },
-            { label: "Shared", href: "/shared", Icon: ShareIcon },
-            { label: "Deleted", href: "/deleted", Icon: TrashBinIcon },
-          ].map(({ label, href, Icon }) => (
-            <NavLink key={label} to={href}>
-              {({ isActive }) => (
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <SvgIcon
-                        sx={{ color: isActive ? "brand.main" : "#757897" }}
-                        component={Icon}
-                        inheritViewBox
+        <Stack py={2} pt={0} sx={{ height: "100%", justifyContent: "space-between" }}>
+          <List>
+            {[
+              { label: "Home", href: "/", Icon: HomeIcon },
+              { label: "My Files", href: "/files", Icon: FoldersIcon },
+              { label: "Stared", href: "/starred", Icon: StarIcon },
+              { label: "Files Request", href: "/request", Icon: FileRequestIcon },
+              { label: "Shared", href: "/shared", Icon: ShareIcon },
+              { label: "Deleted", href: "/deleted", Icon: TrashBinIcon },
+            ].map(({ label, href, Icon }) => (
+              <NavLink key={label} to={href}>
+                {({ isActive }) => (
+                  <ListItem disablePadding>
+                    <ListItemButton disableGutters>
+                      <Box width={35} sx={{ display: "flex" }}>
+                        {isActive && <SvgIcon component={NavSVGIcon} inheritViewBox />}
+                      </Box>
+                      <ListItemIcon>
+                        <SvgIcon
+                          sx={{ color: isActive ? "brand.main" : "#757897" }}
+                          component={Icon}
+                          inheritViewBox
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={label}
+                        sx={{
+                          ".MuiListItemText-primary": {
+                            fontSize: "20px",
+                            fontWeight: 600,
+                            color: isActive ? "primary.main" : "inherit",
+                          },
+                        }}
                       />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={label}
-                      sx={{
-                        ".MuiListItemText-primary": {
-                          fontSize: "20px",
-                          fontWeight: 600,
-                          color: isActive ? "primary.main" : "inherit",
-                        },
-                      }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              )}
-            </NavLink>
-          ))}
-        </List>
-        <Card sx={{ maxWidth: "180px", boxShadow: 2 }}>
-          <CardContent>
-            <img src={FolderImage} alt="folder" />
-            <p>75% in use</p>
-            <BorderLinearProgress variant="determinate" value={75} />
-            <Button variant="contained" sx={{ height: "40px", maxWidth: "140px" }}>
-              Upgrade
-            </Button>
-          </CardContent>
-        </Card>
+                    </ListItemButton>
+                  </ListItem>
+                )}
+              </NavLink>
+            ))}
+          </List>
+          <Card
+            sx={{
+              boxShadow: 3,
+              borderRadius: 5,
+              maxWidth: "11.5rem",
+              alignSelf: "center",
+              width: "100%",
+            }}>
+            <CardContent sx={{ display: "flex", flexDirection: "column" }}>
+              <Image src={FolderImage} sx={{ alignSelf: "self-start" }} alt="storage image" />
+              <Typography
+                variant="body1"
+                sx={{ mb: 1, alignSelf: "start" }}
+                color="primary"
+                fontSize={16}
+                fontWeight={600}>
+                75% in use
+              </Typography>
+              <BorderLinearProgress variant="determinate" value={75} />
+              <Stack direction="row" justifyContent="space-between" mt={0.5}>
+                <Typography variant="caption" color="primary">
+                  600GB
+                </Typography>
+                <Typography variant="caption" color="primary">
+                  800GB
+                </Typography>
+              </Stack>
+              <Button
+                variant="contained"
+                sx={{
+                  borderRadius: 3,
+                  textTransform: "capitalize",
+                  mt: 2.5,
+                }}>
+                Upgrade
+              </Button>
+            </CardContent>
+          </Card>
+        </Stack>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}>
         <Toolbar />

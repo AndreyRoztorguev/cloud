@@ -54,6 +54,7 @@ const muiTheme = createTheme({
               style({ theme }) {
                 return {
                   ...theme.palette.Button,
+                  boxShadow: "none",
                   backgroundColor: theme.palette.brand.main,
                 };
               },
