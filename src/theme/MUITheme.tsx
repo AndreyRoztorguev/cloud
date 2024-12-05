@@ -95,10 +95,22 @@ const muiTheme = createTheme({
         // }),
       },
     },
+    MuiAutocomplete: {
+      variants: [
+        {
+          props: { freeSolo: true },
+          style: ({ theme }) => ({
+            color: "red",
+            backgroundColor: theme.palette.background.paper,
+          }),
+        },
+      ],
+    },
   },
 });
 
 muiTheme.shadows[1] = "0px 2px 30px 0px hsl(0 0% 0% / 60%)";
 muiTheme.shadows[2] = "0px 4px 4px 0px hsl(0 0% 0% / 25%)";
+muiTheme.shadows[3] = "0px 2px 100px 0px hsl(0 0% 0% / 10%)";
 
 export default muiTheme;
