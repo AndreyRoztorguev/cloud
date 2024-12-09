@@ -26,6 +26,7 @@
     "paths": {
       "@/utils/*": ["./src/utils/*"],
       "@/icons/*": ["./src/assets/icons/*"],
+      "@/assets/*": ["./src/assets/*"],
       "@/models/*": ["./src/models/*"],
       "@/components/*": ["./src/components/*"],
       "@/pages/*": ["./src/pages/*"],

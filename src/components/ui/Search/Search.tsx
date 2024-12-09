@@ -1,6 +1,6 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import LoupeIcon from "../../../assets/icons/loupe.svg?react";
+import LoupeIcon from "@/icons/loupe.svg?react";
 import { SvgIcon } from "@mui/material";
 
 interface SearchProps {

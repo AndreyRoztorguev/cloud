@@ -13,11 +13,11 @@ import {
   Typography,
 } from "@mui/material";
 import { FunctionComponent } from "react";
-import FolderIcon from "../../../assets/icons/folder.svg?react";
-import UserImage from "../../../assets/mock/user.png";
-import UserImage2 from "../../../assets/mock/user2.png";
-import UserImage3 from "../../../assets/mock/user3.png";
-import UserImage4 from "../../../assets/mock/user4.png";
+import FolderIcon from "@/icons/folder.svg?react";
+import UserImage from "@/assets/mock/user.png";
+import UserImage2 from "@/assets/mock/user2.png";
+import UserImage3 from "@/assets/mock/user3.png";
+import UserImage4 from "@/assets/mock/user4.png";
 import { format } from "@/utils/formate";
 
 const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => {
