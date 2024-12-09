@@ -16,6 +16,7 @@ export interface File {
 
 export interface Folder {
   id: string;
+  name: string;
   type: string;
   date: string;
   users: User[];

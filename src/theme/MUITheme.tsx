@@ -32,8 +32,8 @@ declare module "@mui/material/SvgIcon" {
 const muiTheme = createTheme({
   palette: {
     primary: { main: "hsl(235, 78%, 25%)" },
-    text: { primary: "hsl(235, 14%, 53%)" },
-    brand: { main: "hsl(217, 100%, 50%)" },
+    text: { primary: "hsl(235, 14%, 53%)", secondary: "hsl(221, 43%, 11%)" },
+    brand: { main: "hsl(217, 100%, 50%)", light: "hsl(219, 100%, 96%)" },
     // brand: { main: yellow[100], light: green["400"], dark: cyan[200] },
     background: {
       default: "hsl(0, 0%, 99%)",
@@ -54,8 +54,12 @@ const muiTheme = createTheme({
               style({ theme }) {
                 return {
                   ...theme.palette.Button,
-                  boxShadow: "none",
-                  backgroundColor: theme.palette.brand.main,
+                  boxShadow: theme.shadows[4],
+                  textTransform: "capitalize",
+                  borderRadius: theme.shape.borderRadius * 2,
+                  color: theme.palette.brand.main,
+                  backgroundColor: theme.palette.brand.light,
+                  fontWeight: "bold",
                 };
               },
             },
@@ -112,5 +116,6 @@ const muiTheme = createTheme({
 muiTheme.shadows[1] = "0px 2px 30px 0px hsl(0 0% 0% / 60%)";
 muiTheme.shadows[2] = "0px 4px 4px 0px hsl(0 0% 0% / 25%)";
 muiTheme.shadows[3] = "0px 2px 100px 0px hsl(0 0% 0% / 10%)";
+muiTheme.shadows[4] = "0px 1px 2px 0px hsl(220 43% 11% / 10%)";
 
 export default muiTheme;
