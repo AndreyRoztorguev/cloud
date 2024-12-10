@@ -35,10 +35,28 @@ function floor(input: number, divisor: number = 1): number {
   return Math.floor(input / divisor) * divisor;
 }
 
+function fileSize(sizeInBytes: number, options?: Intl.NumberFormatOptions) {
+  // if (sizeInBytes >= 1024 * 1024 * 1024 * 1024 * 1024 * 1024) {
+  //   // petabytes the max value
+  //   return "Too large";
+  // }
+  const units = ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte", "petabyte"];
+  const i = Math.floor(Math.log(sizeInBytes) / Math.log(1024));
+  const size = sizeInBytes / Math.pow(1024, i);
+
+  return new Intl.NumberFormat("us-US", {
+    unit: units[i],
+    notation: "standard",
+    style: "unit",
+    ...options,
+  }).format(size);
+}
+
 const format = {
   int: integer,
-  float: float,
+  float,
   floor,
+  fileSize,
 };
 
 export { format };

@@ -1,3 +1,4 @@
+import { FilesTable } from "@/components/partials/FilesTable/FilesTable";
 import { FolderCard } from "@/components/partials/FolderCard/FolderCard";
 import { Folder } from "@/models/types";
 import { Button, Container, Grid2, Stack, Typography } from "@mui/material";
@@ -55,9 +56,7 @@ const folders: Folder[] = [
 
 function Home() {
   return (
-    <Container
-    // sx={{ border: "1px solid red" }}
-    >
+    <Container>
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -79,9 +78,14 @@ function Home() {
           <Grid2 size={4} key={data.id} component={FolderCard} {...data} />
         ))}
       </Grid2>
-      {/* {folders.map((data) => (
-        <FolderCard key={data.id} {...data} />
-      ))} */}
+      <Stack mt="2.25rem" mb="1.5rem">
+        <Typography variant="body1" fontSize="1.5rem" color="primary">
+          Recent Files
+        </Typography>
+      </Stack>
+      <Stack>
+        <FilesTable />
+      </Stack>
     </Container>
   );
 }

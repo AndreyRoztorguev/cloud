@@ -34,6 +34,7 @@ const muiTheme = createTheme({
     primary: { main: "hsl(235, 78%, 25%)" },
     text: { primary: "hsl(235, 14%, 53%)", secondary: "hsl(221, 43%, 11%)" },
     brand: { main: "hsl(217, 100%, 50%)", light: "hsl(219, 100%, 96%)" },
+
     background: {
       default: "hsl(0, 0%, 99%)",
       paper: "hsl(0, 0%, 100%)",

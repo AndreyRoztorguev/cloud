@@ -1,4 +1,10 @@
+import UserImage from "@/assets/mock/user.png";
+import UserImage2 from "@/assets/mock/user2.png";
+import UserImage3 from "@/assets/mock/user3.png";
+import UserImage4 from "@/assets/mock/user4.png";
+import { Icons } from "@/components/ui/Icons/Icons";
 import { Folder } from "@/models/types";
+import { format } from "@/utils/formate";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Avatar,
@@ -9,16 +15,9 @@ import {
   CardHeader,
   IconButton,
   Stack,
-  SvgIcon,
   Typography,
 } from "@mui/material";
 import { FunctionComponent } from "react";
-import FolderIcon from "@/icons/folder.svg?react";
-import UserImage from "@/assets/mock/user.png";
-import UserImage2 from "@/assets/mock/user2.png";
-import UserImage3 from "@/assets/mock/user3.png";
-import UserImage4 from "@/assets/mock/user4.png";
-import { format } from "@/utils/formate";
 
 const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => {
   return (
@@ -38,22 +37,7 @@ const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => 
         }}
         title={
           <Stack direction="row" gap={1} sx={{ alignSelf: "flex-start" }}>
-            <Box
-              width={40}
-              height={40}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              sx={{
-                backgroundColor: "brand.light",
-                borderRadius: 2.5,
-              }}>
-              <SvgIcon
-                component={FolderIcon}
-                inheritViewBox
-                sx={{ width: "18px", height: "14px" }}
-              />
-            </Box>
+            <Icons.FileIcon />
             <Box
               display="flex"
               flexDirection="column"
@@ -92,8 +76,11 @@ const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => 
               spacing="small"
               sx={{
                 ".MuiAvatarGroup-avatar": {
+                  fontWeight: "600",
                   position: "static",
                   fontSize: "0.8rem",
+                  color: "brand.main",
+                  backgroundColor: "brand.light",
                 },
               }}>
               <Avatar alt="Remy Sharp" src={UserImage} />
@@ -116,6 +103,7 @@ const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => 
                 backgroundColor: "brand.light",
                 borderRadius: "0.625rem",
                 color: "brand.main",
+                fontWeight: 600,
               }}>
               {format.float(files.length)}
             </Box>
