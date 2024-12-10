@@ -1,22 +1,9 @@
-import UserImage from "@/assets/mock/user.png";
-import UserImage2 from "@/assets/mock/user2.png";
-import UserImage3 from "@/assets/mock/user3.png";
-import UserImage4 from "@/assets/mock/user4.png";
+import { UsersGroup } from "@/components/partials/UsersGroup/UsersGroup";
 import { Icons } from "@/components/ui/Icons/Icons";
 import { Folder } from "@/models/types";
 import { format } from "@/utils/formate";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, CardHeader, IconButton, Stack, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 
 const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => {
@@ -64,7 +51,8 @@ const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => 
             <Typography variant="body2" fontWeight={500}>
               Shared Users
             </Typography>
-            <AvatarGroup
+            <UsersGroup users={users} />
+            {/* <AvatarGroup
               total={users.length}
               renderSurplus={(total) =>
                 format.float(total, {
@@ -87,7 +75,7 @@ const FolderCard: FunctionComponent<Folder> = ({ name, date, files, users }) => 
               <Avatar alt="Travis Howard" src={UserImage2} />
               <Avatar alt="Agnes Walker" src={UserImage3} />
               <Avatar alt="Trevor Henderson" src={UserImage4} />
-            </AvatarGroup>
+            </AvatarGroup> */}
           </Box>
           <Box display="flex" flexDirection="column" justifyContent="space-between">
             <Typography variant="body2" fontWeight={500}>

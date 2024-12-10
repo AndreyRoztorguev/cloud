@@ -34,7 +34,6 @@ const muiTheme = createTheme({
     primary: { main: "hsl(235, 78%, 25%)" },
     text: { primary: "hsl(235, 14%, 53%)", secondary: "hsl(221, 43%, 11%)" },
     brand: { main: "hsl(217, 100%, 50%)", light: "hsl(219, 100%, 96%)" },
-
     background: {
       default: "hsl(0, 0%, 99%)",
       paper: "hsl(0, 0%, 100%)",
@@ -106,6 +105,38 @@ const muiTheme = createTheme({
           style: ({ theme }) => ({
             color: "red",
             backgroundColor: theme.palette.background.paper,
+          }),
+        },
+      ],
+    },
+    MuiTableHead: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          padding: theme.spacing(4),
+          borderBottom: `1px solid ${theme.palette.grey[200]}`,
+        }),
+      },
+    },
+    MuiTableCell: {
+      variants: [
+        {
+          props: { padding: "normal" },
+          style: ({ theme }) => ({
+            padding: theme.spacing(4),
+            border: "none",
+          }),
+        },
+      ],
+      defaultProps: { padding: "normal" },
+    },
+    MuiTablePagination: {
+      variants: [
+        {
+          props: { padding: "normal" },
+          style: ({ theme }) => ({
+            "& >:last-child": {
+              paddingRight: theme.spacing(4),
+            },
           }),
         },
       ],

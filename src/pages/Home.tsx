@@ -2,6 +2,10 @@ import { FilesTable } from "@/components/partials/FilesTable/FilesTable";
 import { FolderCard } from "@/components/partials/FolderCard/FolderCard";
 import { Folder } from "@/models/types";
 import { Button, Container, Grid2, Stack, Typography } from "@mui/material";
+import UserImage from "@/assets/mock/user.png";
+import UserImage2 from "@/assets/mock/user2.png";
+import UserImage3 from "@/assets/mock/user3.png";
+import UserImage4 from "@/assets/mock/user4.png";
 
 const folders: Folder[] = [
   {
@@ -10,7 +14,16 @@ const folders: Folder[] = [
     name: "Documents",
     files: Array(3985),
     date: "Sep 25, 2022, 13:25 PM",
-    users: Array(100),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "12", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "23", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "34", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "45", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
   },
   {
     id: "2",
@@ -18,7 +31,18 @@ const folders: Folder[] = [
     name: "Music",
     files: Array(1110422134),
     date: "08-12-2024",
-    users: Array(1_000_000),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4qqd", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "2312e", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
   },
   {
     id: "3",
@@ -26,7 +50,22 @@ const folders: Folder[] = [
     name: "ProjectK",
     files: Array(10000),
     date: "08-12-2024",
-    users: Array(100_000),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4asd3", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4qqd", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "2312e", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
   },
   {
     id: "4",
@@ -34,7 +73,18 @@ const folders: Folder[] = [
     name: "Rico Media",
     files: Array(36),
     date: "Sep 25, 2022, 13:25 PM",
-    users: Array(10),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "411", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
   },
   {
     id: "5",
@@ -42,7 +92,18 @@ const folders: Folder[] = [
     name: "New Dev",
     files: Array(999),
     date: "08-12-2024",
-    users: Array(304),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "3asda2", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "432f", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
   },
   {
     id: "6",
@@ -50,7 +111,28 @@ const folders: Folder[] = [
     name: "Files 2022",
     files: Array(10000009),
     date: "08-12-2024",
-    users: Array(1002),
+    users: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "3232f23f", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4www2", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "121d", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "wqwqwq2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3f23", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4askd2627", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "3232f23f", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4www2", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "232", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "122", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "211", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "323r", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
   },
 ];
 

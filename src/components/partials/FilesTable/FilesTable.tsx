@@ -1,11 +1,12 @@
 import * as React from "react";
 // import { alpha } from "@mui/material/styles";
 import { Icons } from "@/components/ui/Icons/Icons";
+import { format } from "@/utils/formate";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { IconButton, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Paper from "@mui/material/Paper";
-import Switch from "@mui/material/Switch";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -14,135 +15,42 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
 import { visuallyHidden } from "@mui/utils";
-import { format } from "@/utils/formate";
+import { User } from "@/models/types";
+import { UsersGroup } from "@/components/partials/UsersGroup/UsersGroup";
+import { rows } from "@/components/partials/FilesTable/files.mock";
+import { compare } from "@/utils/compare";
 
-interface Data {
+export interface Data {
   id: number;
   name: string;
-  sharedUsers: string;
+  sharedUsers: User[];
   fileSize: number;
   lastModified: string;
 }
 
-function createData<Data>(data: Data): Data {
-  return data;
-}
-
-const rows = [
-  createData<Data>({
-    id: 1,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 100000002201,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 2,
-    name: "UX-UI.zip",
-    sharedUsers: "shared",
-    fileSize: 1024 * 1024 * 1024 * 1024 * 1024,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 3,
-    name: "Office.mp4",
-    sharedUsers: "shared",
-    fileSize: 3,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 4,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1025,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 5,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1024 * 1024 * 1023,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 6,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 7,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 8,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 9,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 10,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 11,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 12,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-  createData<Data>({
-    id: 13,
-    name: "Website Design.png",
-    sharedUsers: "shared",
-    fileSize: 1,
-    lastModified: new Date().toLocaleDateString(),
-  }),
-];
-
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
 type Order = "asc" | "desc";
 
-function getComparator<Key extends keyof any>(
+function getComparator<Key extends keyof Data>(
   order: Order,
   orderBy: Key
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+): (
+  a: { [key in Key]: number | string | User[] },
+  b: { [key in Key]: number | string | User[] }
+) => number {
   return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a, b) => {
+        if (Array.isArray(a) && Array.isArray(b)) {
+          return a.length - b.length;
+        }
+        return compare.descendingComparator(a, b, orderBy);
+      }
+    : (a, b) => {
+        if (Array.isArray(a) && Array.isArray(b)) {
+          return b.length - a.length;
+        }
+        return -compare.descendingComparator(a, b, orderBy);
+      };
 }
 
 interface HeadCell {
@@ -156,7 +64,7 @@ const headCells: readonly HeadCell[] = [
   {
     id: "name",
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: "Name",
   },
   {
@@ -177,12 +85,6 @@ const headCells: readonly HeadCell[] = [
     disablePadding: false,
     label: "Last Modified",
   },
-  // {
-  //   id: "",
-  //   numeric: true,
-  //   disablePadding: false,
-  //   lable: "",
-  // },
 ];
 
 interface EnhancedTableProps {
@@ -195,25 +97,13 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
-
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              "aria-label": "select all desserts",
-            }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -237,46 +127,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     </TableHead>
   );
 }
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
-function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
-  return (
-    <Toolbar
-      sx={[
-        {
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-        },
-        // numSelected > 0 && {
-        //   bgcolor: (theme) =>
-        //     alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        // },
-      ]}>
-      {/* {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )} */}
-    </Toolbar>
-  );
-}
+
 function FilesTable() {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(3);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === "asc";
@@ -321,10 +178,6 @@ function FilesTable() {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -339,12 +192,8 @@ function FilesTable() {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2, boxShadow: 3, borderRadius: 5 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}>
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -357,7 +206,6 @@ function FilesTable() {
               {visibleRows.map((row, index) => {
                 const isItemSelected = selected.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
-
                 return (
                   <TableRow
                     hover
@@ -368,31 +216,40 @@ function FilesTable() {
                     key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: "pointer" }}>
-                    <TableCell padding="checkbox">
-                      {/* <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          "aria-labelledby": labelId,
-                        }}
-                      /> */}
-                      <Icons.FileIcon file={row.name} />
-                      {/* {row.name} */}
+                    <TableCell component="th" id={labelId} scope="row">
+                      <Stack display="flex" flexDirection="row" alignItems="center" gap={3}>
+                        <Icons.FileIcon file={row.name} />
+                        <Typography variant="body2" color="brand">
+                          {row.name}
+                        </Typography>
+                      </Stack>
                     </TableCell>
-                    <TableCell component="th" id={labelId} scope="row" padding="none">
-                      {row.name}
+                    <TableCell align="right">
+                      <UsersGroup users={row.sharedUsers} />
                     </TableCell>
-                    <TableCell align="right">{row.sharedUsers}</TableCell>
                     <TableCell align="right">{format.fileSize(row.fileSize)}</TableCell>
                     <TableCell align="right">{row.lastModified}</TableCell>
-                    <TableCell align="right">action</TableCell>
+                    <TableCell align="right">
+                      <FormControlLabel
+                        sx={{
+                          mr: 0,
+                        }}
+                        control={
+                          <IconButton>
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                        label={null}
+                        labelPlacement="end"
+                      />
+                    </TableCell>
                   </TableRow>
                 );
               })}
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows,
+                    height: 53 * emptyRows,
                   }}>
                   <TableCell colSpan={6} />
                 </TableRow>
@@ -401,7 +258,8 @@ function FilesTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          padding="normal"
+          rowsPerPageOptions={[3, 10, 25]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -410,10 +268,6 @@ function FilesTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </Box>
   );
 }

@@ -36,10 +36,10 @@ function floor(input: number, divisor: number = 1): number {
 }
 
 function fileSize(sizeInBytes: number, options?: Intl.NumberFormatOptions) {
-  // if (sizeInBytes >= 1024 * 1024 * 1024 * 1024 * 1024 * 1024) {
-  //   // petabytes the max value
-  //   return "Too large";
-  // }
+  if (sizeInBytes >= 1024 * 1024 * 1024 * 1024 * 1024 * 1024) {
+    // petabytes the max value
+    return "Too large";
+  }
   const units = ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte", "petabyte"];
   const i = Math.floor(Math.log(sizeInBytes) / Math.log(1024));
   const size = sizeInBytes / Math.pow(1024, i);

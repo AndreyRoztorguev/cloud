@@ -1,0 +1,183 @@
+import { Data } from "@/components/partials/FilesTable/FilesTable";
+import { date, dateFormat } from "@/utils/date";
+import UserImage from "@/assets/mock/user.png";
+import UserImage2 from "@/assets/mock/user2.png";
+import UserImage3 from "@/assets/mock/user3.png";
+import UserImage4 from "@/assets/mock/user4.png";
+
+export const rows: Data[] = [
+  {
+    id: 1,
+    name: "Android.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "12", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "23", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "34", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "45", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
+    fileSize: 100000002201,
+    lastModified: dateFormat(date.today()),
+  },
+  {
+    id: 2,
+    name: "Base.zip",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "1wef", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "w2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3a", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "1ef2", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "23", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "324", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "45", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
+    fileSize: 1024 * 1024 * 1024 * 1024 * 1024,
+    lastModified: dateFormat(date.yesterday()),
+  },
+  {
+    id: 3,
+    name: "Damon.mp4",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "1wef", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "w2", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "3a", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "4", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+      { id: "1ef2", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "23", name: "Angela", email: "angela@gmail.com", avatar: UserImage2 },
+      { id: "324", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "45", name: "Gena", email: "gena@gmail.com", avatar: UserImage4 },
+    ],
+    fileSize: 1024 * 1024 * 1024 * 1024,
+    lastModified: dateFormat(date.tomorrow()),
+  },
+  {
+    id: 4,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1025,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 5,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1024 * 1024 * 1023,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 6,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 7,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 8,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 9,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 10,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 11,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 12,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+  {
+    id: 13,
+    name: "Website Design.png",
+    sharedUsers: [
+      { id: "1", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "3", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+      { id: "11", name: "Andrew", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "13", name: "Alex", email: "andrew@gmail.com", avatar: UserImage },
+      { id: "33", name: "Alice", email: "alice@gmail.com", avatar: UserImage3 },
+    ],
+    fileSize: 1,
+    lastModified: new Date().toLocaleDateString(),
+  },
+];
