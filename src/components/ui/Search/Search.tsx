@@ -3,56 +3,6 @@ import TextField from "@mui/material/TextField";
 import LoupeIcon from "@/icons/loupe.svg?react";
 import { SvgIcon } from "@mui/material";
 
-interface SearchProps {
-  id: string;
-  placeholder?: string;
-}
-
-const Search: React.FC<SearchProps> = ({ id, placeholder = "Search anything here" }) => {
-  return (
-    <Autocomplete
-      freeSolo
-      id={id}
-      options={top100Films.map((option) => option.title)}
-      fullWidth
-      //   sx={{
-      //     backgroundColor: "background.paper",
-      //     boxShadow: 3,
-      //     borderRadius: 2,
-      //   }}
-      renderInput={(params) => (
-        <TextField
-          className="hex"
-          {...params}
-          placeholder={placeholder}
-          variant="standard"
-          slotProps={{
-            input: {
-              ...params.InputProps,
-              type: "search",
-              startAdornment: (
-                <SvgIcon
-                  component={LoupeIcon}
-                  sx={{ mr: 1, color: "transparent" }}
-                  inheritViewBox
-                />
-              ),
-              //   sx: {
-              //     height: "2.5rem",
-              //     px: "10px",
-              //     "&:after": { borderBottom: "none" },
-              //     "&:before": { borderBottom: "none" },
-              //   },
-            },
-          }}
-        />
-      )}
-    />
-  );
-};
-
-export { Search };
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -180,3 +130,53 @@ const top100Films = [
   { title: "3 Idiots", year: 2009 },
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
+
+interface SearchProps {
+  id: string;
+  placeholder?: string;
+}
+
+const Search: React.FC<SearchProps> = ({ id, placeholder = "Search anything here" }) => {
+  return (
+    <Autocomplete
+      freeSolo
+      id={id}
+      options={top100Films.map((option) => option.title)}
+      fullWidth
+      //   sx={{
+      //     backgroundColor: "background.paper",
+      //     boxShadow: 3,
+      //     borderRadius: 2,
+      //   }}
+      renderInput={(params) => (
+        <TextField
+          className="hex"
+          {...params}
+          placeholder={placeholder}
+          variant="standard"
+          slotProps={{
+            input: {
+              ...params.InputProps,
+              type: "search",
+              startAdornment: (
+                <SvgIcon
+                  component={LoupeIcon}
+                  sx={{ mr: 1, color: "transparent" }}
+                  inheritViewBox
+                />
+              ),
+              //   sx: {
+              //     height: "2.5rem",
+              //     px: "10px",
+              //     "&:after": { borderBottom: "none" },
+              //     "&:before": { borderBottom: "none" },
+              //   },
+            },
+          }}
+        />
+      )}
+    />
+  );
+};
+
+export { Search };
