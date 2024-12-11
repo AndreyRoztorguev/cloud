@@ -74,7 +74,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.brand.main,
     ...theme.applyStyles("dark", {
       backgroundColor: theme.palette.secondary.main,
     }),
@@ -167,11 +167,12 @@ function MainLayout() {
                 </Typography>
               </Stack>
               <Button
-                variant="contained"
+                variant="primary"
                 sx={{
-                  borderRadius: 3,
                   textTransform: "capitalize",
                   mt: 2.5,
+                  height: "2.5rem",
+                  fontWeight: 700,
                 }}>
                 Upgrade
               </Button>
@@ -207,7 +208,7 @@ function MainLayout() {
             justifyContent="end"
             flexGrow={1}
             gap="0.75rem">
-            <Box maxWidth="18.75rem" width="100%">
+            <Box maxWidth="21rem" width="100%">
               <Search id="search-files" />
             </Box>
             <NotificationsBadge badgeContent={4}>

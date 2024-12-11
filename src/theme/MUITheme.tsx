@@ -1,33 +1,4 @@
-import { createTheme, PaletteColorOptions } from "@mui/material";
-import {} from "@mui/material/colors";
-
-declare module "@mui/material/styles" {
-  // interface Theme {
-  //   shadow: {
-  //     drop: ThemeOptions["shadow"];
-  //   };
-  // }
-  //   interface ThemeOptions {
-  //     shadows?: string[];
-  //   }
-  interface Palette {
-    brand: Palette["primary"];
-  }
-  interface PaletteOptions {
-    brand?: PaletteColorOptions;
-  }
-
-  interface TypeBackground {
-    primary: PaletteColorOptions;
-  }
-  // interface SvgIconPropsColorOverrides extends Palette {}
-}
-
-declare module "@mui/material/SvgIcon" {
-  interface SvgIconPropsColorOverrides {
-    brand: true;
-  }
-}
+import { createTheme, darken } from "@mui/material";
 
 const muiTheme = createTheme({
   palette: {
@@ -59,6 +30,22 @@ const muiTheme = createTheme({
                   color: theme.palette.brand.main,
                   backgroundColor: theme.palette.brand.light,
                   fontWeight: "bold",
+                  "&:hover": {
+                    backgroundColor: darken(theme.palette.brand.light, 0.1),
+                  },
+                };
+              },
+            },
+            {
+              props: { variant: "primary" },
+              style({ theme }) {
+                return {
+                  backgroundColor: theme.palette.brand.main,
+                  color: "#fff",
+                  borderRadius: theme.shape.borderRadius * 2,
+                  "&:hover": {
+                    backgroundColor: darken(theme.palette.brand.main, 0.3),
+                  },
                 };
               },
             },
@@ -122,7 +109,7 @@ const muiTheme = createTheme({
         {
           props: { padding: "normal" },
           style: ({ theme }) => ({
-            padding: theme.spacing(4),
+            padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
             border: "none",
           }),
         },
@@ -140,6 +127,44 @@ const muiTheme = createTheme({
           }),
         },
       ],
+    },
+    MuiTextField: {
+      variants: [
+        {
+          props: {
+            type: "search",
+          },
+          style: ({ theme }) => ({
+            // ".MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before": {
+            //   borderBottom: "none",
+            // },
+            ".MuiAutocomplete-inputRoot": {
+              padding: `0 ${theme.spacing(2)}`,
+              fontSize: theme.typography.body2.fontSize,
+              color: theme.palette.text.secondary,
+              boxShadow: theme.shadows[3],
+              borderRadius: theme.shape.borderRadius * 3,
+              // "&:before": {
+              //   borderBottom: "none",
+              // },
+            },
+          }),
+        },
+      ],
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+          "&.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+          },
+        },
+      },
     },
   },
 });
